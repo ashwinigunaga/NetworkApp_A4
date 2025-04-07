@@ -1,6 +1,7 @@
 console.log('Hello World')
 
 const HelloWorldBox = document.getElementById('hello-world')
+const postsBox = document.getElementById('posts-box')
 
 $.ajax({
     type: 'GET',
@@ -12,5 +13,23 @@ $.ajax({
 
     error: function(error){
         console.log('error', error)
+    }
+})
+
+$.ajax({
+    type: 'GET',
+    url: '/data/',
+    success: function(response){
+        console.log(response)
+        const data = response.data
+        console.log(data)
+        data.forEach(el => {
+            postsBox.innerHTML += `
+                ${el.title} - <b>${el.body}</b><br>
+            `
+        });
+    },
+    errror: function(response){
+        console.log(error)
     }
 })
