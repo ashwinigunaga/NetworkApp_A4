@@ -9,16 +9,9 @@ const title = document.getElementById('id_title')
 const body = document.getElementById('id_body')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
+const url = window.location.href
+
 const alertBox = document.getElementById('alert-box')
-
-
-const handleAlerts = (type, msg) => {
-    alertBox.innerHTML = `
-        <div class="alert alert-${type}" role="alert">
-            ${msg}
-        </div>
-    `
-}
 
 
 const getCookie = (name) => {
@@ -86,7 +79,7 @@ const getData = () => {
                             <div class="card-footer">
                                 <div class = "row">
                                     <div class = "col-2">
-                                        <a href="#" class="btn btn-primary">Details</a>
+                                        <a href="${url}${el.id}" class="btn btn-primary">Details</a>
                                     </div>
                                     <div class = "col-2">
                                         <form class="like-unlike-forms" data-form-id="${el.id}">
@@ -97,7 +90,7 @@ const getData = () => {
                     `
                 });
                 likeUnlikePosts()
-            },1000)
+            },100)
             console.log(response.size)
             if(response.size==0){
                 endBox.textContent = 'No posts added yet...'
@@ -156,6 +149,7 @@ postForm.addEventListener('submit', e=>{
                 likeUnlikePosts()
                 $('#addPostModal').modal('hide')
                 handleAlerts('success', 'New Post Added!')
+                postForm.reset()
         },
         error: function(response){
             console.log(response)
