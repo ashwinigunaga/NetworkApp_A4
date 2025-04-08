@@ -7,12 +7,17 @@ const endBox = document.getElementById('end-box')
 const postForm = document.getElementById('post-form')
 const title = document.getElementById('id_title')
 const body = document.getElementById('id_body')
-const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
+const csrf = document.getElementsByName('csrfmiddlewaretoken')
 const url = window.location.href
 
 const alertBox = document.getElementById('alert-box')
 
+const deleted = localStorage.getItem('title')
+if(deleted){
+    handleAlerts('danger', `deleted "${deleted}"`)
+    localStorage.clear()
+}
 
 const getCookie = (name) => {
     let cookieValue = null;
