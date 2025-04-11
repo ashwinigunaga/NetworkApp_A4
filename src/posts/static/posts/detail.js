@@ -17,7 +17,28 @@ const spinnerBox = document.getElementById('spinner-box')
 
 const titleInput = document.getElementById("id_title")
 const bodyInput = document.getElementById("id_body")
-const authorInput = document.getElementById("id_author")
+
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const darkIcon = document.getElementById('dark-icon');
+
+// Load from localStorage on page load
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    darkIcon.classList.replace('bi-moon', 'bi-brightness-high');
+}
+
+darkModeToggle.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+
+    // Toggle icon
+    if (isDark) {
+        darkIcon.classList.replace('bi-moon', 'bi-brightness-high');
+    } else {
+        darkIcon.classList.replace('bi-brightness-high', 'bi-moon');
+    }
+});
+
 
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
@@ -60,7 +81,7 @@ $.ajax({
 
         titleInput.value = data.title
         bodyInput.value = data.body
-        authorInput.vlaue = data.author
+        //authorInput.value = data.author
 
         spinnerBox.classList.add('not-visible')
     },

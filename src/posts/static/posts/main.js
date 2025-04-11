@@ -17,10 +17,25 @@ const dropzone = document.getElementById('my-awesome-dropzone')
 const addBtn = document.getElementById('add-btn')
 const closeBtns = [...document.getElementsByClassName('add-modal-close')]
 
-const toggleBtn = document.getElementById('dark-mode-toggle');
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const darkIcon = document.getElementById('dark-icon');
 
-toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+// Load from localStorage on page load
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    darkIcon.classList.replace('bi-moon', 'bi-brightness-high');
+}
+
+darkModeToggle.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+
+    // Toggle icon
+    if (isDark) {
+        darkIcon.classList.replace('bi-moon', 'bi-brightness-high');
+    } else {
+        darkIcon.classList.replace('bi-brightness-high', 'bi-moon');
+    }
 });
 
 

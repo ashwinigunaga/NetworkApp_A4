@@ -11,7 +11,9 @@ Posts
 {% endblock title %}
 
 {% block content %}
-    <button id="dark-mode-toggle" class="btn btn-secondary mb-3">Toggle Dark Mode</button>
+<button id="dark-mode-toggle" class="btn btn-outline-dark mb-3 float-end" title="Toggle Dark Mode">
+    <i id="dark-icon" class="bi bi-moon"></i>
+</button>
     <!-- Modal -->
     <div class="modal fade" id="addPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
