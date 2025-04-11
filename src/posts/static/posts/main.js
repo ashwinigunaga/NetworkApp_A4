@@ -17,6 +17,13 @@ const dropzone = document.getElementById('my-awesome-dropzone')
 const addBtn = document.getElementById('add-btn')
 const closeBtns = [...document.getElementsByClassName('add-modal-close')]
 
+const toggleBtn = document.getElementById('dark-mode-toggle');
+
+toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
+
+
 const deleted = localStorage.getItem('title')
 if(deleted){
     handleAlerts('danger', `deleted "${deleted}"`)

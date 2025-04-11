@@ -17,6 +17,7 @@ const spinnerBox = document.getElementById('spinner-box')
 
 const titleInput = document.getElementById("id_title")
 const bodyInput = document.getElementById("id_body")
+const authorInput = document.getElementById("id_author")
 
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
@@ -44,14 +45,22 @@ $.ajax({
         bodyEl.setAttribute('class', 'mt-1')
         bodyEl.setAttribute('id', 'body')
 
+        const authorEl = document.createElement('b')
+        authorEl.setAttribute('class', 'mt-1')
+        authorEl.setAttribute('id', 'author')
+
         titleEl.textContent = data.title
         bodyEl.textContent = data.body
+        authorEl.textContent = data.author
 
         postBox.appendChild(titleEl)
         postBox.appendChild(bodyEl)
+        postBox.appendChild(authorEl)
+        
 
         titleInput.value = data.title
         bodyInput.value = data.body
+        authorInput.vlaue = data.author
 
         spinnerBox.classList.add('not-visible')
     },
